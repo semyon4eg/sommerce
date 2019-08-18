@@ -10,7 +10,7 @@ class Service extends ActiveRecord
 		return 'services';
 	}
 
-	public function getOrders(){
-		return $this->hasMany(Order::classname(), ['service_id' => 'id']);
-	}
+	// public function getOrders(){
+	// 	return $this->hasMany(Order::classname(), ['service_id' => 'id']);
+	// }
 }

@@ -18,7 +18,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-    	$orders = Order::find()->all();
-        return $this->render('index', compact('orders'));
+    	$orders = Order::find()->orderBy(['id' => SORT_DESC])->with('service')->all();
+    	// $services = Service::find()->asArray()->all();
+        return $this->render('index', compact('orders', 'services'));
     }
 }
