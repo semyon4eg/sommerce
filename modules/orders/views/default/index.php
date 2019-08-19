@@ -167,7 +167,14 @@
 
     </div>
     <div class="col-sm-4 pagination-counters">
-        <?php echo($pages->offset + 1); ?> to <?php echo(($pages->offset + $pages->pageSize) < $pages->totalCount ? ($pages->offset + $pages->pageSize) : $pages->totalCount); ?> of <?= $pages->totalCount ?>
+       <?php 
+        $firstItem = $pages->offset + 1;
+        echo $firstItem;
+        echo ' to ';
+        $lastItem = $pages->offset + $pages->pageSize;
+        echo ($lastItem < $pages->totalCount ? $lastItem : $pages->totalCount);
+        echo ' of ';
+        echo $pages->totalCount; ?>
     </div>
 
   </div>
