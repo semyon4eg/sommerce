@@ -140,7 +140,15 @@
   <div class="row">
     <div class="col-sm-8">
 
-      <nav>
+        <?php
+            if ($pages->pageCount > 1) {
+                echo \yii\widgets\LinkPager::widget([
+                    'pagination' => $pages,
+                ]);
+            }
+        ?>
+
+      <!-- <nav>
         <ul class="pagination">
           <li class="disabled"><a href="" aria-label="Previous">&laquo;</a></li>
           <li class="active"><a href="">1</a></li>
@@ -155,11 +163,11 @@
           <li><a href="">10</a></li>
           <li><a href="" aria-label="Next">&raquo;</a></li>
         </ul>
-      </nav>
+      </nav> -->
 
     </div>
     <div class="col-sm-4 pagination-counters">
-      1 to 100 of 3263
+        <?php echo($pages->offset + 1); ?> to <?php echo(($pages->offset + $pages->pageSize) < $pages->totalCount ? ($pages->offset + $pages->pageSize) : $pages->totalCount); ?> of <?= $pages->totalCount ?>
     </div>
 
   </div>
