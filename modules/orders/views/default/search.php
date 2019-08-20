@@ -10,36 +10,14 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Orders</a></li>
+        <li class="active"><a href="<?= yii\helpers\Url::to(['default/index'])?>">Orders</a></li>
       </ul>
     </div>
   </div>
 </nav>
 <div class="container-fluid">
-  <ul class="nav nav-tabs p-b">
-    <li class="active"><a href="#">All orders</a></li>
-    <li><a href="#">Pending</a></li>
-    <li><a href="#">In progress</a></li>
-    <li><a href="#">Completed</a></li>
-    <li><a href="#">Canceled</a></li>
-    <li><a href="#">Error</a></li>
-    <li class="pull-right custom-search">
-      <form class="form-inline" action="<?= yii\helpers\Url::to(['default/search'])?>" method="get">
-        <div class="input-group">
-          <input type="text" name="search" class="form-control" value="" placeholder="Search orders">
-          <span class="input-group-btn search-select-wrap">
-
-            <select class="form-control search-select" name="search-type">
-              <option value="1" selected="">Order ID</option>
-              <option value="2">Link</option>
-              <option value="3">Username</option>
-            </select>
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-      </form>
-    </li>
-  </ul>
+  <h2 class="title text-center">Результат поиска "<?= yii\helpers\Html::encode($searchRequest)?>"</h2>
+  <?php if(!empty($orders)): ?>
   <table class="table order-table">
     <thead>
     <tr>
@@ -90,7 +68,7 @@
       <td class="link"><?= parse_url($order->link, PHP_URL_PATH) ?></td>
       <td><?= $order->quantity ?></td>
       <td class="service">
-        <span class="label-id">213</span><?= $order->service->name//$services[$order->service_id-1]['name'] ?>
+        <span class="label-id">213</span><?= $order->service->name?>
       </td>
       <td><?php switch ($order->status) {
                 case 0:
@@ -148,6 +126,6 @@
     </div>
 
   </div>
+  <?php else : echo '<h2 class="text-center">Ничего не найдено</h2>'; ?>
+   <?php endif;?>
 </div>
-
-<!-- <div><?='<pre>' . print_r($orders, true) . '</pre>'?></div> -->
