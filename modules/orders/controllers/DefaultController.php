@@ -22,7 +22,9 @@ class DefaultController extends Controller
     	// $services = Service::find()->asArray()->all(); #For Array-version query
     	$query = Order::find()->orderBy(['id' => SORT_DESC])->with('service');
     	$pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 100, 'forcePageParam' => false, 'pageSizeParam' => false]);
-    	$orders = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+    	$orders = $query->offset($pages->offset)->limit($pages->limit)->cache(60)->all();
+
         return $this->render('index', compact('orders', 'pages')); # +'services' in case of Array-version
     }
 
