@@ -10,7 +10,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Orders</a></li>
+        <li class="active"><a href="<?= yii\helpers\Url::to(['default/index'])?>">Orders</a></li>
       </ul>
     </div>
   </div>
@@ -24,7 +24,7 @@
     <li><a href="#">Canceled</a></li>
     <li><a href="#">Error</a></li>
     <li class="pull-right custom-search">
-      <form class="form-inline" action="<?= yii\helpers\Url::to(['default/search'])?>" method="get">
+      <form class="form-inline" action="<?= yii\helpers\Url::to(['default/index'])?>" method="get">
         <div class="input-group">
           <input type="text" name="search" class="form-control" value="" placeholder="Search orders">
           <span class="input-group-btn search-select-wrap">
@@ -40,6 +40,7 @@
       </form>
     </li>
   </ul>
+  <?php if(!empty($orders)): ?>
   <table class="table order-table">
     <thead>
     <tr>
@@ -148,6 +149,8 @@
     </div>
 
   </div>
+   <?php else : echo '<h2 class="text-center">Ничего не найдено</h2>'; ?>
+   <?php endif;?>
 </div>
 
 <!-- <div><?='<pre>' . print_r($orders, true) . '</pre>'?></div> -->
